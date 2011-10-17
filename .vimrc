@@ -7,6 +7,8 @@ call pathogen#infect() " tim pope is kickass
 
 filetype plugin indent on
 
+syntax on
+
 set nocompatible
 
 set nobackup " don't make a backup file
