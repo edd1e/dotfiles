@@ -1,4 +1,4 @@
-source ~/.git-completion.bash
+source ~/.git-completion
 
 # colorify ls
 alias ls='ls --color=auto'
