@@ -4,5 +4,6 @@ My dotfiles.
 .bashrc
 .screenrc
 .inputrc
+.git-completion
 
 
