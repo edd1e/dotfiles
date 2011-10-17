@@ -7,8 +7,6 @@ call pathogen#infect() " tim pope is kickass
 
 filetype plugin indent on
 
-syntax on
-
 set nocompatible
 
 set nobackup " don't make a backup file
@@ -32,10 +30,20 @@ set nowrap " default to no text wrapping
 set wildmenu " insane tab complete menu
 set wildmode=list:longest,full " insane tab complete menu settings
 set showmatch " show matching braces and parens
-set scrolloff=3 " keep 3 lines visible around cursor
+set scrolloff=5 " keep 5 lines visible around cursor
 
 " simple escape from insert mode
-inoremap jj <ESC> 
+inoremap jj <ESC>
+
+" for macosx, open current file with default
+nmap <leader>o :!open %<CR>
+
+" it's taking forever to load files, make toggle for syntax
+nmap <leader>s :if exists("g:syntax_on") <Bar>
+	\   syntax off <Bar>
+	\ else <Bar>
+	\   syntax enable <Bar>
+	\ endif <CR>
 
 " quick show hidden characters toggle
 nmap <leader>l :set list!<CR>
