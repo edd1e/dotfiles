@@ -13,6 +13,8 @@ set nobackup " don't make a backup file
 set noswapfile " don't keep a swap file
 set nowritebackup " don't keep a backup file
 
+au BufRead,BufNewFile *.html		set filetype=html.javascript.jquery
+
 " syntax enable
 " colorscheme solarized
 " if has('gui_running')
@@ -34,6 +36,11 @@ set scrolloff=5 " keep 5 lines visible around cursor
 
 " simple escape from insert mode
 inoremap jj <ESC>
+
+" insert lorem ipsum
+nmap <F5> :Loremipsum<CR>
+
+nmap <F1> @
 
 " for macosx, open current file with default
 nmap <leader>o :!open %<CR>
