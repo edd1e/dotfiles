@@ -3,9 +3,27 @@
 " https://github.com/holman/dotfiles/blob/master/vim/vimrc.symlink
 " https://github.com/ryanb/dotfiles/blob/master/vimrc
 
+" selectively disable plugins
+let g:pathogen_disabled = []
+
+call add(g:pathogen_disabled, 'delimitMate')
+
+" for some reason the csscolor plugin is very slow when run on the terminal
+" but not in GVim, so disable it if no GUI is running
+if !has('gui_running')
+	call add(g:pathogen_disabled, 'csscolor')
+endif
+" Gundo requires at least vim 7.3
+if v:version < '703' || !has('python')
+	call add(g:pathogen_disabled, 'gundo')
+endif
+
 call pathogen#infect() " tim pope is kickass
+call pathogen#helptags()
 
 filetype plugin indent on
+
+let mapleader=";"
 
 set nocompatible
 
@@ -40,7 +58,8 @@ inoremap jj <ESC>
 " insert lorem ipsum
 nmap <F5> :Loremipsum<CR>
 
-nmap <F1> @
+" simpler macros (using numbers)
+nmap ` @
 
 " for macosx, open current file with default
 nmap <leader>o :!open %<CR>
@@ -53,19 +72,14 @@ nmap <leader>s :if exists("g:syntax_on") <Bar>
 	\ endif <CR>
 
 " quick show hidden characters toggle
-nmap <leader>l :set list!<CR>
+nmap \l :set list!<CR>
 
 " quick wrap toggle
-nmap <leader>w :set wrap!<CR>
+nmap \w :set wrap!<CR>
 
 " quick wrap toggle
-nmap <leader>h :set nohls!<CR>
+nmap \h :set nohls!<CR>
 
-" simple window selecting
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
 
 " sane movement with wrap turned on (from holman)
 nnoremap j gj
@@ -80,9 +94,39 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
 " simple tab selecting
-nmap <C-Tab> :tabnext<cr>
-imap <C-Tab> <C-o>:tabnext<cr>
-vmap <C-Tab> <C-o>:tabnext<cr>
-nmap <C-S-Tab> :tabprevious<cr>
-imap <C-S-Tab> <C-o>:tabprevious<cr>
-vmap <C-S-Tab> <C-o>:tabprevious<cr>
+" nmap <C-Tab> :tabnext<cr>
+" imap <C-Tab> <C-o>:tabnext<cr>
+" vmap <C-Tab> <C-o>:tabnext<cr>
+" nmap <C-S-Tab> :tabprevious<cr>
+" imap <C-S-Tab> <C-o>:tabprevious<cr>
+" vmap <C-S-Tab> <C-o>:tabprevious<cr>
+
+nmap <leader>s :source ~/.vimrc<CR>
+nmap <leader>e :edit ~/.vimrc<CR>
+
+" switch buffer/tab/window manipulation & selection
+" to be <leader><F#> instead?
+" buffer manipulation & selection
+nmap <leader>bn :bn<CR>	"next
+nmap <leader>bp :bp<CR>	"prev
+nmap <leader>bd :bd<CR>	"delete
+nmap <leader>ba :badd
+					"add (needs arg)
+
+" tab manipulation & selection
+nmap <leader>tn :tabnext<CR>	" tab right
+nmap <leader>tp :tabprev<CR>	" tab left
+nmap <leader>tc :tabclose<CR>	" close tab
+nmap <leader>ta :tabnew<CR>	" add tab
+nmap <leader>tm :tabmove<CR>	" move tab far right
+
+" window manipulation & selection
+nmap <C-h> <C-w>h		" window select left
+nmap <C-j> <C-w>j		" window select down
+nmap <C-k> <C-w>k		" window select up
+nmap <C-l> <C-w>l		" window select right
+nmap <leader>wm <C-w>T			" window move to next tab
+nmap <leader>ws :split<CR>		" window horizontal split
+nmap <leader>wv :vsplit<CR>	" window vertical split
+nmap <leader><F4> :clo<cr> " window close
+
