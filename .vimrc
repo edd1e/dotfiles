@@ -54,21 +54,23 @@ set scrolloff=5 " keep 5 lines visible around cursor
 
 " simple escape from insert mode
 inoremap jj <ESC>
+inoremap kk <ESC>
 
 " insert lorem ipsum
 nmap <F5> :Loremipsum<CR>
 
 " simpler macros (using numbers)
-nmap ` @
+" nmap ` @
+
 
 " for macosx, open current file with default
 nmap <leader>o :!open %<CR>
 
 " it's taking forever to load files, make toggle for syntax
-nmap <leader>s :if exists("g:syntax_on") <Bar>
+nmap \s :if exists("g:syntax_on") <Bar>
 	\   syntax off <Bar>
 	\ else <Bar>
-	\   syntax enable <Bar>
+	\   syntax enable<Bar>
 	\ endif <CR>
 
 " quick show hidden characters toggle
@@ -79,7 +81,6 @@ nmap \w :set wrap!<CR>
 
 " quick wrap toggle
 nmap \h :set nohls!<CR>
-
 
 " sane movement with wrap turned on (from holman)
 nnoremap j gj
@@ -107,26 +108,49 @@ nmap <leader>e :edit ~/.vimrc<CR>
 " switch buffer/tab/window manipulation & selection
 " to be <leader><F#> instead?
 " buffer manipulation & selection
-nmap <leader>bn :bn<CR>	"next
-nmap <leader>bp :bp<CR>	"prev
-nmap <leader>bd :bd<CR>	"delete
+nmap <leader>bn :bn<CR>
+						"next
+nmap <leader>bp :bp<CR>
+						"prev
+nmap <leader>bd :bd<CR>
+						"delete
 nmap <leader>ba :badd
-					"add (needs arg)
+						"add (needs arg)
 
 " tab manipulation & selection
-nmap <leader>tn :tabnext<CR>	" tab right
-nmap <leader>tp :tabprev<CR>	" tab left
-nmap <leader>tc :tabclose<CR>	" close tab
-nmap <leader>ta :tabnew<CR>	" add tab
-nmap <leader>tm :tabmove<CR>	" move tab far right
+nmap <leader>tn :tabnext<CR>
+								" tab right
+nmap <leader>tp :tabprev<CR>
+								" tab left
+nmap <leader>tc :tabclose<CR>
+								" close tab
+nmap <leader>ta :tabnew<CR>
+								" add tab
+nmap <leader>tm :tabmove<CR>
+								" move tab far right
 
 " window manipulation & selection
-nmap <C-h> <C-w>h		" window select left
-nmap <C-j> <C-w>j		" window select down
-nmap <C-k> <C-w>k		" window select up
-nmap <C-l> <C-w>l		" window select right
-nmap <leader>wm <C-w>T			" window move to next tab
-nmap <leader>ws :split<CR>		" window horizontal split
-nmap <leader>wv :vsplit<CR>	" window vertical split
-nmap <leader><F4> :clo<cr> " window close
+nmap <C-h> <C-w>h
+							" window select left
+nmap <C-j> <C-w>j
+							" window select down
+nmap <C-k> <C-w>k
+							" window select up
+nmap <C-l> <C-w>l
+							" window select right
+nmap <leader>wm <C-w>T
+							" window move to next tab
+nmap <leader>ws :split<CR>
+							" window horizontal split
+nmap <leader>wv :vsplit<CR>
+							" window vertical split
+
+nmap <leader><F4> :clo<cr>
+							" window close
+
+nmap O 0i<CR><ESC>
+nmap o j0i<CR><ESC>kk
+
+nmap <leader>n :NERDTreeToggle<CR>
+
 
