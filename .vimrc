@@ -44,7 +44,7 @@ au BufRead,BufNewFile *.html		set filetype=html.javascript.jquery
 " set tabstop=8 softtabstop=4 shiftwidth=4 noexpandtab
 " set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
-set list listchars=tab:»\ ,extends:»,precedes:«,trail:·,eol:¬
+set listchars=tab:»\ ,extends:»,precedes:«,trail:·,eol:¬
 set nohlsearch                 " default to no searched text highlighting
 set incsearch                  " default to incremental search
 set nowrap                     " default to no text wrapping
@@ -63,7 +63,6 @@ nmap <F5> :Loremipsum<CR>
 
 " simpler macros (using numbers)
 " nmap ` @
-
 
 " for macosx, open current file with default
 nmap <leader>o :!open %<CR>
