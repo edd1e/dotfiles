@@ -27,8 +27,8 @@ let mapleader=";"
 
 set nocompatible
 
-set nobackup " don't make a backup file
-set noswapfile " don't keep a swap file
+set nobackup      " don't make a backup file
+set noswapfile    " don't keep a swap file
 set nowritebackup " don't keep a backup file
 
 au BufRead,BufNewFile *.html		set filetype=html.javascript.jquery
@@ -45,12 +45,14 @@ au BufRead,BufNewFile *.html		set filetype=html.javascript.jquery
 " set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 set tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 set list listchars=tab:»\ ,extends:»,precedes:«,trail:·,eol:¬
-set nohlsearch " default to no searched text highlighting
-set nowrap " default to no text wrapping
-set wildmenu " insane tab complete menu
+set nohlsearch                 " default to no searched text highlighting
+set incsearch                  " default to incremental search
+set nowrap                     " default to no text wrapping
+set wildmenu                   " insane tab complete menu
 set wildmode=list:longest,full " insane tab complete menu settings
-set showmatch " show matching braces and parens
-set scrolloff=5 " keep 5 lines visible around cursor
+set showmatch                  " show matching braces and parens
+set matchtime=3                " show matching braces and parens for a short time
+set scrolloff=5                " keep 5 lines visible around cursor
 
 " simple escape from insert mode
 inoremap jj <ESC>
@@ -65,6 +67,9 @@ nmap <F5> :Loremipsum<CR>
 
 " for macosx, open current file with default
 nmap <leader>o :!open %<CR>
+
+" make it easy to tabularize
+nmap <leader>t :Tabularize<CR>
 
 " it's taking forever to load files, make toggle for syntax
 nmap \s :if exists("g:syntax_on") <Bar>
@@ -95,62 +100,58 @@ inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
 
 " simple tab selecting
-" nmap <C-Tab> :tabnext<cr>
-" imap <C-Tab> <C-o>:tabnext<cr>
-" vmap <C-Tab> <C-o>:tabnext<cr>
-" nmap <C-S-Tab> :tabprevious<cr>
-" imap <C-S-Tab> <C-o>:tabprevious<cr>
-" vmap <C-S-Tab> <C-o>:tabprevious<cr>
-
 nmap <leader>s :source ~/.vimrc<CR>
 nmap <leader>e :edit ~/.vimrc<CR>
 
 " switch buffer/tab/window manipulation & selection
-" to be <leader><F#> instead?
+" to be <leader><F#>[do][end] instead?
+"
 " buffer manipulation & selection
-nmap <leader>bn :bn<CR>
-						"next
-nmap <leader>bp :bp<CR>
-						"prev
+" shift-tab buffer next
+nmap <ESC>[Z :bn<cr>
+" buffer delete
 nmap <leader>bd :bd<CR>
-						"delete
-nmap <leader>ba :badd
-						"add (needs arg)
+
+" "next
+" nmap <leader>bn :bn<CR>
+" "prev
+" nmap <leader>bp :bp<CR>
+" "delete
+" "add (needs arg)
+" nmap <leader>ba :badd
 
 " tab manipulation & selection
-nmap <leader>tn :tabnext<CR>
-								" tab right
-nmap <leader>tp :tabprev<CR>
-								" tab left
-nmap <leader>tc :tabclose<CR>
-								" close tab
-nmap <leader>ta :tabnew<CR>
-								" add tab
+
+nmap <ESC>OA :tabnew<CR>	" C-UP
+nmap <ESC>OC :tabnext<CR>	" C-LEFT
+nmap <ESC>OD :tabprev<CR>	" C-LEFT
+nmap <ESC>OB :tabclose<CR>	" C-DOWN
+" move tab far right
 nmap <leader>tm :tabmove<CR>
-								" move tab far right
+
 
 " window manipulation & selection
+" window select left
 nmap <C-h> <C-w>h
-							" window select left
+" window select down
 nmap <C-j> <C-w>j
-							" window select down
+" window select up
 nmap <C-k> <C-w>k
-							" window select up
+" window select right
 nmap <C-l> <C-w>l
-							" window select right
+" window move to next tab
 nmap <leader>wm <C-w>T
-							" window move to next tab
+" window horizontal split
 nmap <leader>ws :split<CR>
-							" window horizontal split
+" window vertical split
 nmap <leader>wv :vsplit<CR>
-							" window vertical split
+" window close
+nmap <leader>wc :clo<cr>
 
-nmap <leader><F4> :clo<cr>
-							" window close
-
-nmap O 0i<CR><ESC>
-nmap o j0i<CR><ESC>kk
+" nmap O 0i<CR><ESC>
+" nmap o j0i<CR><ESC>kk
 
 nmap <leader>n :NERDTreeToggle<CR>
 
-
+" disable the jingle bells
+set noeb vb t_vb=
